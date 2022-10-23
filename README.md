@@ -2,9 +2,8 @@
 This Repository contains some of my works and projects.
 
 ### 1.Birder 
-Bird recordings prediction & labeling
+A bird recordings prediction & labeling
 
-![](images/SpeciesV2.PNG)
 Main features:
 * Analyze long audio files segment by segment, with chosen overlap.
 * Display a labeled segment in time with left and right markers, and a text label.
@@ -17,3 +16,5 @@ Main features:
 * Easily select time and frequency range using the mouse, and play audio with/without bandpass.
 * Import time-signatures from text files.
 * Export wave files/time-signatures report by hand tagged/predicted/imported timestamps.
+
+![](images/SpeciesV2.PNG)
