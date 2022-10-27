@@ -1,6 +1,6 @@
 # Portfolio
 This Repository contains some of my works and projects.
-$~$
+<br/><br/>
 
 ### 1.Birder
 An audio analysis desktop application - predict, label and analyze bio-acoustic audio files.
@@ -19,15 +19,11 @@ Main features:
 * Export wave files/time-signatures report by displayed borders.
 * Zoom in/out
 * Save displayed spectrogram as an image
- 
+<br/><br/>
 ![](images/SpeciesV2.PNG)
 
-<br/><br/>
-<br/><br/>
-<br/><br/>
-<br/><br/>
-<br/><br/>
 
+<br/><br/>
 
 ### 2.Chirp Segmentation
 Segment bird's chirp-words into syllables.
@@ -52,7 +48,7 @@ Main features:
 * Zoom in/out.
 * Save displayed spectrogram as an image.
  
- 
+<br/><br/>
 ![](images/Segment2.PNG)
 
 
