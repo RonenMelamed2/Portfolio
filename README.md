@@ -23,7 +23,7 @@ Main features:
 ![](images/SpeciesV2.PNG)
 
 
-<br/><br/>
+<br/>
 
 ### 2.Chirp Segmentation
 Segment bird's chirp-words into syllables.
