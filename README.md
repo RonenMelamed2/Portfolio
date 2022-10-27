@@ -1,20 +1,57 @@
 # Portfolio
 This Repository contains some of my works and projects.
 
-### 1.Birder 
-A bird recordings prediction & labeling
+### 1.Birder
+An audio analysis desktop application - predict, label and analyze bio-acoustic audio files.
 
 Main features:
 * Analyze long audio files segment by segment, with chosen overlap.
 * Display a labeled segment in time with left and right markers, and a text label.
 * Using a pre-loaded Tensorflow model, run inference on the current segment and display prediction results.
-* Upload a custom Tensorflow model and specify relevant model and preprocessing parameters.
-* Display top prediction probabilities using a bar graph.
+* Upload your own Tensorflow model.
+* Display top prediction probabilities.
 * Run prediction sequentially on long wave files, and produce a prediction report for each segment.
-* Add or erase borders, as well as shift existing predicted boders interactivly using the mouse.
-* Edit predicted labels using the keyboard.
-* Easily select time and frequency range using the mouse, and play audio with/without bandpass.
+* Add or erase borders, as well as shift existing predicted borders interactively using the mouse.
+* Edit segment's label using the keyboard.
+* Easily select time and frequency range using the mouse, and play audio with/without bandpass filter.
 * Import time-signatures from text files.
-* Export wave files/time-signatures report by hand tagged/predicted/imported timestamps.
-
+* Export wave files/time-signatures report by displayed borders.
+* Zoom in/out
+* Save displayed spectrogram as an image
+ 
 ![](images/SpeciesV2.PNG)
+
+
+### 1.Chirp Segmentation
+Segment bird's chirp-words into syllables.
+Optimized for the bird 'Bulbul', but can be adjusted to fit any vocalization.
+The heart of the segmenting process relies on a novel segmentation algorithm i've formulated,
+which is based on the use of Canny edge detection.
+
+Main features:
+* Segment given audio file into detected syllables and display borders.
+* Calculate and draw pitch estimation using the following methods:
+	* Zero-crossing rate
+	* Fitting a legendre polynomial of chosen order to Zcr pitch estimation
+	* Pyin
+	* Max frequency component for each time frame, extracted directly from the signal's STFT
+* Synthesize and play audio using the pitch estimation methods mentioned above.
+* Play and pause full audio, or detected regions only.
+* Appply median-clipping to the displayed spectrogram.
+* Apply a bandpass filter in selected range
+* Display signal's energy function.
+* Export segmented wave files/time-signatures report.
+* Easily select time and frequency range using the mouse, and play audio with/without bandpass filter.
+* Import time-signatures from text files.
+* Export wave files/time-signatures report by displayed borders.
+* Zoom in/out.
+* Save displayed spectrogram as an image.
+ 
+ 
+![](images/Segment2.PNG)
+
+
+ 
+ 
+
+
