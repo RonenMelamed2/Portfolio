@@ -1,5 +1,6 @@
 # Portfolio
 This Repository contains some of my works and projects.
+$~$
 
 ### 1.Birder
 An audio analysis desktop application - predict, label and analyze bio-acoustic audio files.
@@ -20,12 +21,15 @@ Main features:
 * Save displayed spectrogram as an image
  
 ![](images/SpeciesV2.PNG)
-
-
-### 1.Chirp Segmentation
+$~$
+$~$
+$~$
+ 
+ 
+### 2.Chirp Segmentation
 Segment bird's chirp-words into syllables.
 Optimized for the bird 'Bulbul', but can be adjusted to fit any vocalization.
-The heart of the segmenting process relies on a novel segmentation algorithm i've formulated,
+The heart of the segmentation process relies on a novel segmentation algorithm i've formulated,
 which is based on the use of Canny edge detection.
 
 Main features:
@@ -38,11 +42,9 @@ Main features:
 * Synthesize and play audio using the pitch estimation methods mentioned above.
 * Play and pause full audio, or detected regions only.
 * Appply median-clipping to the displayed spectrogram.
-* Apply a bandpass filter in selected range
+* Apply a bandpass filter in selected range.
 * Display signal's energy function.
 * Export segmented wave files/time-signatures report.
-* Easily select time and frequency range using the mouse, and play audio with/without bandpass filter.
-* Import time-signatures from text files.
 * Export wave files/time-signatures report by displayed borders.
 * Zoom in/out.
 * Save displayed spectrogram as an image.
