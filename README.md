@@ -21,11 +21,14 @@ Main features:
 * Save displayed spectrogram as an image
  
 ![](images/SpeciesV2.PNG)
-$~$
-$~$
-$~$
- 
- 
+
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+
+
 ### 2.Chirp Segmentation
 Segment bird's chirp-words into syllables.
 Optimized for the bird 'Bulbul', but can be adjusted to fit any vocalization.
