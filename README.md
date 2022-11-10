@@ -7,7 +7,7 @@ An audio analysis desktop application - predict, label and analyze bio-acoustic 
 
 Main features:
 * Analyze long audio files segment by segment, with chosen overlap.
-* Display a labeled segment in time with left and right markers, and a text label.
+* Display a labeled in time with left and right markers, and a text label.
 * Using a pre-loaded Tensorflow model, run inference on the current segment and display prediction results.
 * Upload your own Tensorflow model.
 * Display top prediction probabilities.
@@ -35,7 +35,7 @@ Main features:
 * Segment given audio file into detected syllables and display borders.
 * Calculate and draw pitch estimation using the following methods:
 	* Zero-crossing rate
-	* Fitting a legendre polynomial of chosen order to Zcr pitch estimation
+	* Fitting a Legendre polynomial of chosen order to Zcr pitch estimation
 	* Pyin
 	* Max frequency component for each time frame, extracted directly from the signal's STFT
 * Synthesize and play audio using the pitch estimation methods mentioned above.
@@ -48,7 +48,7 @@ Main features:
 * Zoom in/out.
 * Save displayed spectrogram as an image.
  
-<br/><br/>
+<br/>
 ![](images/Segment2.PNG)
 
 
