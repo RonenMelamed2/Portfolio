@@ -5,7 +5,7 @@ This Repository contains some of my works and projects:
 ##### 3. Kingfisher Classification
 
 Note: The code for sections 1, 2 is not present in this reposirory as it's still under
-development under an on going academic research yet to be published.
+development in an on going academic research, yet to be published.
 <br/><br/>
 
 ### 1.Birder
