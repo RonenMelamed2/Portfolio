@@ -53,7 +53,7 @@ Main features:
 * Zoom in/out.
 * Save displayed spectrogram as an image.
 
-<br/>
+<br/><br/>
 ![](images/Segment2.PNG)
 ![](images/SpeciesV2.PNG)
 
