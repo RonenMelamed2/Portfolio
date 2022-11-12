@@ -55,7 +55,6 @@ Main features:
 
 <br/><br/>
 ![](images/Segment2.PNG)
-![](images/SpeciesV2.PNG)
 
 
  
