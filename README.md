@@ -28,7 +28,6 @@ Main features:
 <br/><br/>
 ![](images/SpeciesV2.PNG)
 
-
 <br/>
 
 ### 2.Chirp Segmentation
@@ -53,9 +52,10 @@ Main features:
 * Export wave files/time-signatures report by displayed borders.
 * Zoom in/out.
 * Save displayed spectrogram as an image.
- 
+
 <br/>
 ![](images/Segment2.PNG)
+![](images/SpeciesV2.PNG)
 
 
  
