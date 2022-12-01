@@ -38,7 +38,7 @@ which is based on the use of Canny edge detection.
 
 Main features:
 * Automatic temporal segmentation of provided audio file into unit events.
-* Display detected borders with enabled interactive editing.
+* Display detected borders with the ability of interactive editing.
 * Calculate and draw pitch estimation using the following methods:
 	* Zero-crossing rate
 	* Fitting a Legendre polynomial of chosen order to Zcr pitch estimation
