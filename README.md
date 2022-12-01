@@ -1,5 +1,5 @@
 # Portfolio
-This Repository contains some of my works and projects:
+This Repository contains some of my work and projects:
 ##### 1. Birder
 ##### 2. Chirp Segmentation
 ##### 3. Kingfisher Classification
