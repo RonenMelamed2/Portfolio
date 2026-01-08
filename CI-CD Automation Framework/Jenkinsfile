@@ -1,0 +1,130 @@
+pipeline {
+    agent any // run jon in any available computer / node you have
+    
+    // ---- PIPELINE CONFIGURATION ----
+    // This pipeline uses your existing Dockerfile to build and run tests
+    // It can be triggered manually or via webhook (configured later)
+    // Uses Docker-in-Docker (DinD) for production-like isolated Docker access
+    // Jenkins connects to DinD's Docker socket via --volumes-from (secure, isolated)
+    
+    parameters {
+        // Placeholders for cross-repo triggering (not used yet — logged only)
+        string(name: 'DEV_BRANCH', defaultValue: 'main', description: 'Dev repo branch (placeholder)')
+        string(name: 'MASTER_BRANCH', defaultValue: 'main', description: 'Master branch (placeholder)')
+        string(name: 'DEV_COMMIT', defaultValue: '', description: 'Dev repo commit SHA (placeholder)')
+        string(name: 'TRIGGERED_BY_REPO', defaultValue: '', description: 'Repo that triggered this job (placeholder)')
+    }
+
+    stages {
+        // ---- STAGE 1: CHECKOUT CODE ----
+        // Jenkins checks out your code from Bitbucket (or any Git repo)
+        stage('Checkout') {
+            steps {
+                script {
+                    echo 'Checking out code from repository...'
+                    echo "Trigger context (placeholders): DEV_BRANCH=${params.DEV_BRANCH}, DEV_COMMIT=${params.DEV_COMMIT}, TRIGGERED_BY_REPO=${params.TRIGGERED_BY_REPO}"
+                    // Jenkins will automatically checkout based on job configuration
+                    // This step is here for clarity and logging
+                }
+            }
+        }
+        
+        // ---- STAGE 2: BUILD DOCKER IMAGE ----
+        // Uses your existing Dockerfile to build the test container
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    echo 'Building Docker image using existing Dockerfile...'
+                    // Build the image with a tag for this build
+                    sh 'docker build -t automationinfra-tests:${BUILD_NUMBER} .'
+                    // Also tag as 'latest' for convenience
+                    sh 'docker tag automationinfra-tests:${BUILD_NUMBER} automationinfra-tests:latest'
+                }
+            }
+        }
+        
+        // ---- STAGE 3: RUN TESTS IN CONTAINER ----
+        // Executes your TestNG suite inside the Docker container
+        stage('Run Tests') {
+            steps {
+                script {
+                    echo 'Running TestNG tests inside Docker container...'
+                    sh '''
+                        mkdir -p test-results
+
+                        # Run tests in a container, then copy reports out.
+                        # We intentionally DO NOT use --rm so we can docker cp the reports.
+                        CONTAINER_ID=$(docker run -d automationinfra-tests:${BUILD_NUMBER} mvn test)
+
+                        # Wait for container to finish and capture the exit code.
+                        EXIT_CODE=$(docker wait "$CONTAINER_ID")
+
+                        # Copy reports out even if tests failed (so Jenkins can publish results).
+                        docker cp "$CONTAINER_ID":/app/target/surefire-reports/. test-results/ || true
+
+                        # Cleanup container
+                        docker rm "$CONTAINER_ID" >/dev/null
+
+                        # Fail the build if tests failed (standard CI behavior)
+                        if [ "$EXIT_CODE" != "0" ]; then
+                          echo "Tests failed in container (exit code: $EXIT_CODE)"
+                          exit "$EXIT_CODE"
+                        fi
+                    '''
+                }
+            }
+        }
+        
+        // ---- STAGE 4: ARCHIVE TEST RESULTS ----
+        // Makes TestNG XML reports visible in Jenkins UI
+        stage('Archive Test Results') {
+            steps {
+                script {
+                    echo 'Verifying test results exist...'
+                    sh 'ls -la test-results/ || echo "test-results directory not found"'
+                    sh 'find test-results -name "*.xml" -type f || echo "No XML files found"'
+                }
+            }
+        }
+    }
+    
+    // ---- POST-BUILD ACTIONS ----
+    // Cleanup and notifications (runs regardless of success/failure)
+    post {
+        always {
+            script {
+                echo 'Cleaning up Docker images...'
+                // Optional: Remove old images to save disk space
+                // Uncomment if you want automatic cleanup:
+                // sh 'docker image prune -f'
+            }
+
+            // Publish TestNG results using TestNG Results Plugin
+            // Main TestNG report file is typically testng-results.xml under surefire-reports.
+            testNG reportFilenamePattern: 'test-results/**/testng-results.xml'
+
+            // Also publish any JUnit-style XML reports (Surefire generates these too).
+            // allowEmptyResults prevents reporting from failing the build if a pattern mismatch occurs.
+            junit testResults: 'test-results/**/*.xml', allowEmptyResults: true
+        }
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Check logs for details.'
+        }
+    }
+}
+
+// ---- END OF JENKINSFILE ----
+// Summary:
+// 1. Checks out your code from Bitbucket
+// 2. Builds Docker image using your existing Dockerfile
+// 3. Runs tests inside the container (executes mvn clean test)
+// 4. Archives TestNG XML reports for Jenkins UI display
+// 
+// Prerequisites:
+// - Jenkins must have Docker installed and accessible
+// - Jenkins user must have permission to run Docker commands
+// - Optional: Install "TestNG Results Publisher" plugin in Jenkins for better test reporting
+
