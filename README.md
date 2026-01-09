@@ -5,8 +5,8 @@
 # Portfolio
 This Repository contains some of my work and projects:
 ### 1. End-to-End CI/CD Infrastructure deployed on AWS
-### 2. Birder
-### 3. Chirp Segmentation
+### 2. Birder - Deployed CNN and ResNet models within a desktop GUI to visualize and classify acoustic signals in real-time
+### 3. Chirp Segmentation - Segment bird's chirp-words into syllables using novel algorithms
 <br/><br/>
 
 ### 1. End-to-End CI/CD Infrastructure deployed on AWS
@@ -136,7 +136,7 @@ Main features:
 <br/>
 
 ### 3. Chirp Segmentation
-Segment bird's chirp-words into syllables.
+Segment bird's chirp-words into syllables using novel algorithms
 Optimized for the bird 'Bulbul', but can be adjusted to fit any vocalization.
 The heart of the segmentation process relies on a novel segmentation algorithm i have formulated,
 which is based on the use of Canny edge detection.
