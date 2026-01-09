@@ -7,16 +7,16 @@ This Repository contains some of my work and projects:
 ##### 1. End-to-End CI/CD Infrastructure deployed on AWS
 ##### 2. Birder
 ##### 3. Chirp Segmentation
+<br/><br/>
 
-
-1. # End-to-End CI/CD Infrastructure deployed on AWS
+### 1. End-to-End CI/CD Infrastructure deployed on AWS
 
 * The **Maven/Java-Kotlin-TestNG stack** combines dependency/plugin management with suite definitions so each build compiles into a runnable JAR that feeds the pipeline shown above.
 * A **Dockerized Jenkins** image based on Maven/OpenJDK copies the repository, exposes 8080, and runs `mvn test` for quick local validation before cloud deployment.
 * The **AWS foundation** consists of an Ubuntu EC2 machine, Docker configured for a non-root user, an Elastic IP, and a No-IP DNS record that keeps `ronen-automation.ddns.net` tied to that static endpoint.
 * ***Jenkins deployment** mounts a persistent `jenkins_home` volume and the host `/var/run/docker.sock` so Jenkins can launch docker-in-docker sibling workers that execute the automation code.
 * **Networking and SSL** rely on AWS security groups that limit traffic to HTTP/HTTPS, while **Nginx** plus **Certbot/Let’s Encrypt** terminate SSL and redirect HTTP requests to HTTPS before reaching Jenkins.
-# **Operational flow** mirrors the diagram: a Bitbucket webhook hits the DNS name, Nginx terminates SSL and proxies to Jenkins, and Jenkins rebuilds Docker images, runs TestNG suites, exports XML reports, and deletes the ephemeral worker containers.
+* **Operational flow** mirrors the diagram: a Bitbucket webhook hits the DNS name, Nginx terminates SSL and proxies to Jenkins, and Jenkins rebuilds Docker images, runs TestNG suites, exports XML reports, and deletes the ephemeral worker containers.
 
 Note: The EC2 host is currently disabled, and the automation code now lives in a dedicated Bitbucket repository; please reach out if you want to schedule a live demo.
 
