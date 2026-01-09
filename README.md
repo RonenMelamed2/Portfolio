@@ -1,8 +1,6 @@
 # Portfolio
 
 
-
-# Portfolio
 This Repository contains some of my work and projects:
 ### 1. End-to-End CI/CD Infrastructure deployed on AWS
 ### 2. Birder - Deployed CNN and ResNet models within a desktop GUI to visualize and classify acoustic signals in real-time
